@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="home.css" rel="stylesheet" />
 </head> 
-<body>
+<body class="body">
     <div class="d-flex">
         <div class=" mt-4 ms-4 border-end" style="width:15rem; height:45rem;">
             <i class="fs-4   ">photogram</i>
