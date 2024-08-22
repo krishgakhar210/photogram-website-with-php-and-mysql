@@ -37,7 +37,7 @@ $resultarr=mysqli_fetch_all ($result,MYSQLI_ASSOC);
                     <td><?php echo $row['mobile_number']; ?></td>
                     <td><?php echo $row['username']; ?></td>
                     <td><?php echo $row['time'];?></td>
-                    <td><?php echo $row['time'];?></td>
+                    <td><?php echo $row['password'];?></td>
                 </tr>
             <?php } ?>
         </table>

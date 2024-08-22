@@ -21,9 +21,8 @@
             // echo "$user </br>";
             // echo $pass;
             $query="INSERT INTO users (mobile_number,full_name,username,password) VALUES ('$num','$name','$user','$pass')";
-            echo $query;
             $result=mysqli_query($conn,$query);
-            echo $result;
+            echo "data Tis tranferred successfully";
         }
     ?>
     <div class="">

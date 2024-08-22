@@ -1,4 +1,11 @@
-<?php include('db.php'); ?>
+<?php include('db.php'); 
+session_start();
+?>
+<?php
+if(isset($_SESSION['username']) && $_SESSION['username']!=''){
+    header("location:home.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +18,7 @@
 
 </head>
 <body>
-    <?php
-        if(isset($_POST['submit'])){
-            $user=$_POST['username'];
-            $pass=$_POST['password'];
-       
-        
-        $query="INSERT INTO login_users(username,password) VALUES ('$user','$pass')";
-        echo $quiry;
-        $result=mysqli_query($conn,$query);
-        echo $result;
-        }
-    ?>
+   
     <div>
         <div class="row mt-5 d-flex justify-content-center">
             <div class="col-9 " style="width:27rem;">
@@ -34,8 +30,25 @@
                         <form method="post">
                             <i class="fs-2 heading">photogram</i>
                             <input  type="text" name="username" class="ms-4 me-4 form-control bg-light mt-5  border-light-subtle"  placeholder="Phone number,Username or email" style="width:17rem;"/>
-                            <input  type="text" name="username" class="ms-4 me-4 form-control bg-light mt-3  border-light-subtle"  placeholder="password" style="width:17rem;"/>
+                            <input  type="password" name="password" class="ms-4 me-4 form-control bg-light mt-3  border-light-subtle"  placeholder="password" style="width:17rem;"/>
                             <input type="submit" name="submit" class="btn btn-primary mt-3 ms-4" style="width:17rem;" value="log in" />
+                            <?php
+                                if(isset($_POST['submit'])){
+                                    $user=$_POST['username'];
+                                    $pass=$_POST['password'];
+                            
+                                $query="SELECT * FROM users WHERE username='$user' AND password='$pass'";
+                                $result=mysqli_query($conn,$query);
+                                $resultarr=mysqli_fetch_assoc($result);
+                                if($resultarr!=null && count($resultarr)>0){
+                                    echo 'data found';
+                                    $_SESSION['username']=$user;
+                                    header("location:home.php");
+                                }else{
+                                    echo '<p class="text-danger text-center mt-1">Username/password Invalid!!</p>';
+                                }
+                                }
+                            ?>
                             <div class="d-flex ms-3 mt-3">
                                 <div class=" border-top mt-3 me-4 ms-3"style="width:6rem;"></div>
                                 <div class="mt-2"> <span>OR</span></div>

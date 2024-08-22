@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['username']) && $_SESSION['username']==''){
+    header("location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +17,14 @@
 <body class="body">
     <div class="d-flex">
         <div class=" mt-4 ms-4 border-end" style="width:15rem; height:45rem;">
-            <i class="fs-4   ">photogram</i>
+            <i class="fs-4   ">photogram </i>
             <div class="d-flex mt-5">
             <i class="fa-solid fa-house text-dark fs-5"></i>             
-               <h6 class="ms-3">Home</h6>
+               <h6 class="ms-3"><a class href="">Home </a></h6>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-solid fa-magnifying-glass text-dark fs-5 mt-1"></i>
-                <span class="ms-3">search</span>
+                <span class="ms-3"><a href="">Search </a></span>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-brands fa-internet-explorer text-dark fs-5 mt-1"></i>
