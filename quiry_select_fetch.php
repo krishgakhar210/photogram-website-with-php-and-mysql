@@ -4,11 +4,22 @@ include('db.php');
 $query="SELECT * FROM users";
 $result=mysqli_query($conn,$query);
 $resultarr=mysqli_fetch_all ($result,MYSQLI_ASSOC);
+
+// $quiry="INSERT INTO login_users(username,password) VALUES ('$user','$pass')";
+//         echo $quiry;
+//         $result=mysqli_query($conn,$quiry);
+//         echo $result;
+// 
+
+ // $query="SELECT * FROM users WHERE username='$user' AND password='$pass'";
+// $result=mysqli_query($conn,$query);
+// $resultarr=mysqli_fetch_assoc($result);
+
 //print_r($resultarr);
 
 // foreach ($resultarr as $value ) {
 //    echo "$value[full_name]</br>";
-// }
+// } -->
 ?>
 <!DOCTYPE html>
 <html lang="en">

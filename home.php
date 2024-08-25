@@ -1,8 +1,13 @@
 <?php
+include('db.php');
 session_start();
-if(isset($_SESSION['username']) && $_SESSION['username']==''){
+if(!isset($_SESSION['username'])){
     header("location:login.php");
 }
+$currentUsername=$_SESSION['username'];
+$query="SELECT * FROM users WHERE username!='$currentUsername'";
+$result=mysqli_query($conn,$query);
+$resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +21,7 @@ if(isset($_SESSION['username']) && $_SESSION['username']==''){
 </head> 
 <body class="body">
     <div class="d-flex">
-        <div class=" mt-4 ms-4 border-end" style="width:15rem; height:45rem;">
+        <div class=" mt-4 ms-4 border-end position-fixed" style="width:15rem; height:45rem;">
             <i class="fs-4   ">photogram </i>
             <div class="d-flex mt-5">
             <i class="fa-solid fa-house text-dark fs-5"></i>             
@@ -59,7 +64,7 @@ if(isset($_SESSION['username']) && $_SESSION['username']==''){
                 <span class="ms-3">More</span>
             </div>
         </div>
-        <div class="mt-5 ms-5">
+        <div id="mid" class="mt-5 ">
             <div class="d-flex ms-5">
                 <img class="ms-4 rounded-circle border border-danger" src="IMG_4128.jpg" width="60" height="60"/>
                 <img class="ms-4 rounded-circle border border-danger" src="IMG_4128.jpg" width="60" height="60"/>
@@ -71,23 +76,27 @@ if(isset($_SESSION['username']) && $_SESSION['username']==''){
 
             </div>
             <div class=" mt-4 row" >
-                <div class="d-flex col-9  offset-2 ">
+                <div class="d-flex col-9  offset-1 ">
                   <img class="ms-4 rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
                     <div class="ms-2" style="height:1rem;">
                         <h6 class="mt-1">Krishgakhar_06</h6>
                         <span id="audio" class="">original audio</span>
                     </div>
                     <span class="ms-1">. 7h</span>
-                    <div class="col-6">
+                    <div class="col-4">
                        <span class="float-end fs-3">...</span>
                     </div>
                 </div>
-                <div class=" col-9  offset-2 mt-3">
+                <div class=" col-9 offset-1  mt-3">
                   <img id="img"  class="text-center ms-4" src="IMG_4128.jpg" />
-                </div>
+                </div> 
+                <div class=" col-9  offset-1 mt-3">
+                  <img id="img"  class="text-center ms-4" src="IMG_4128.jpg" />
+                </div> 
+                 
             </div>
         </div>
-        <div class="mt-4 col-2  " style="width:18rem;">
+        <div class="col-2 end  " style="width:18rem;">
             <div class="d-flex mt-4">
                 <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
                 <div class="">
@@ -100,46 +109,17 @@ if(isset($_SESSION['username']) && $_SESSION['username']==''){
                 <span id="suggest">Suggested for you</span>
                 <p id="see">See all</p>
             </div>
+            <?php foreach($resultarr as $username ){   ?>
             <div class="d-flex mt-3">
+              
                 <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
                 <div class="">
-                    <h6 class="ms-2">Sahil_pb91</h6>
-                    <span class="ms-2 little ">Sahil</span>
+                    <h6 class="ms-2"><?php echo $username['username'];  ?></h6>
+                    <span class="ms-2 little "><?php echo $username['mobile_number'];  ?></span>
                 </div>
                 <div  class="ms-5"><span class="ms-5 text-primary">Follow</span></div>
             </div>
-            <div class="d-flex mt-3">
-                <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
-                <div class="">
-                    <h6 class="ms-2">Sahil_pb91</h6>
-                    <span class="ms-2 little ">Sahil</span>
-                </div>
-                <div  class="ms-5"><span class="ms-5 text-primary">Follow</span></div>
-            </div>
-            <div class="d-flex mt-3">
-                <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
-                <div class="">
-                    <h6 class="ms-2">Sahil_pb91</h6>
-                    <span class="ms-2 little ">Sahil</span>
-                </div>
-                <div  class="ms-5"><span class="ms-5 text-primary">Follow</span></div>
-            </div>
-            <div class="d-flex mt-3">
-                <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
-                <div class="">
-                    <h6 class="ms-2">Sahil_pb91</h6>
-                    <span class="ms-2 little ">Sahil</span>
-                </div>
-                <div  class="ms-5"><span class="ms-5 text-primary">Follow</span></div>
-            </div>
-            <div class="d-flex mt-3">
-                <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
-                <div class="">
-                    <h6 class="ms-2">Sahil_pb91</h6>
-                    <span class="ms-2 little ">Sahil</span>
-                </div>
-                <div  class="ms-5"><span class="ms-5 text-primary">Follow</span></div>
-            </div>
+            <?php }?>
         </div>
 
     </div>

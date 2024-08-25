@@ -6,9 +6,12 @@
 #img{
     width: 470px;
 }
-#suggest{
-    font-size: 5px;
+
+
+#mid{
+    margin-left:350px ;
 }
-#see{
-    font-size:5px;
+.end{
+    margin-right: 100px;
+    margin-top: 40px;
 }
