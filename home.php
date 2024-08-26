@@ -1,17 +1,23 @@
 <?php
 include('db.php');
 session_start();
-if(!isset($_SESSION['username'])){
-    header("location:login.php");
-}
+// if(!isset($_SESSION['username'])){
+//     header("location:login.php");
+// }
 $currentUsername=$_SESSION['username'];
 $query="SELECT * FROM users WHERE username!='$currentUsername'";
 $result=mysqli_query($conn,$query);
 $resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+// Fetch current user data
+
+$query1="SELECT * FROM users WHERE username =   '$currentUsername'";
+$result1=mysqli_query($conn,$query1);
+$resultarr1=mysqli_fetch_assoc($result1);
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+    <html lang="en">
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home page of photogram</title>
@@ -25,43 +31,43 @@ $resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
             <i class="fs-4   ">photogram </i>
             <div class="d-flex mt-5">
             <i class="fa-solid fa-house text-dark fs-5"></i>             
-               <h6 class="ms-3"><a class href="">Home </a></h6>
+               <h6 class="ms-3"><a class="text-decoration-none text-dark" class href="">Home </a></h6>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-solid fa-magnifying-glass text-dark fs-5 mt-1"></i>
-                <span class="ms-3"><a href="">Search </a></span>
+                <span class="ms-3"><a class="text-decoration-none text-dark" href="">Search </a></span>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-brands fa-internet-explorer text-dark fs-5 mt-1"></i>
-                <span class="ms-3">Explore</span>
+                <span class="ms-3"><a class="text-decoration-none text-dark" href="">Explore </a></span>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-solid fa-circle-play text-dark fs-5 mt-1"></i>
-                <span class="ms-3">Reels</span>
+                <span class="ms-3"><a class="text-decoration-none text-dark" href="">Reels </a></span>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-brands fa-facebook-messenger text-dark fs-5 mt-1"></i>
-                <span class="ms-3">Messages</span>
+                <span class="ms-3"><a class="text-decoration-none text-dark" href="">Messages </a></span>
             </div>
             <div class="d-flex mt-4">
                  <i class="fa-regular fa-heart fs-5 mt-1 text-dark"></i>
-                <span class="ms-3">Notifications</span>
+                <span class="ms-3"><a class="text-decoration-none text-dark" href="">Notifications </a></span>
             </div>
             <div class="d-flex mt-4">
                 <i class="fa-solid fa-plus border text-dark"></i>
-                <span class="ms-3">Create</span>
+                <span class="ms-3"><a class="text-decoration-none text-dark" href="">Crete </a></span>
             </div>
             <div class="d-flex mt-4">
-                <i class="fa-brands fa-internet-explorer fs-5 mt-1 text-dark"></i>
-                <span class="ms-3">Profile</span>
+            <img class=" rounded-circle border border-danger" src="IMG_4128.jpg" width="30" height="30"/>
+                <span class="ms-3"><a class="text-decoration-none text-dark" href="">Profile </a></span>
             </div>
             <div class="mt-5 d-flex">
                 <i class="fa-brands fa-threads fs-5 mt-4 text-dark"></i>
-                <span class="ms-3 mt-4">Threads</span>
+                <span class="ms-3 mt-4"><a class="text-decoration-none text-dark" href="">Threads </a></span>
             </div>
             <div class="mt-5 d-flex">
                 <i class="fa-solid fa-grip-lines fs-5 text-dark"></i>
-                <span class="ms-3">More</span>
+                <span class="ms-3 me-2"><a class="text-decoration-none text-dark" href="">More </a></span>
             </div>
         </div>
         <div id="mid" class="mt-5 ">
@@ -73,13 +79,12 @@ $resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
                 <img class="ms-4 rounded-circle border border-danger" src="IMG_4128.jpg" width="60" height="60"/>
                 <img class="ms-4 rounded-circle border border-danger" src="IMG_4128.jpg" width="60" height="60"/>
                 <img class="ms-4 rounded-circle border border-danger" src="IMG_4128.jpg" width="60" height="60"/>
-
             </div>
             <div class=" mt-4 row" >
                 <div class="d-flex col-9  offset-1 ">
                   <img class="ms-4 rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
                     <div class="ms-2" style="height:1rem;">
-                        <h6 class="mt-1">Krishgakhar_06</h6>
+                        <h6 class="mt-1"><?php print_r($resultarr1['username']);?><h6>
                         <span id="audio" class="">original audio</span>
                     </div>
                     <span class="ms-1">. 7h</span>
@@ -100,8 +105,8 @@ $resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
             <div class="d-flex mt-4">
                 <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
                 <div class="">
-                    <h6 class="ms-2">Krishgakhar_06</h6>
-                    <span class="ms-2 little ">Krish</span>
+                    <h6 class="ms-2"><?php print_r($resultarr1['username']);?></h6>
+                    <span class="ms-2 little "><?php print_r($resultarr1['full_name']);?></span>
                 </div>
                 <div  class="ms-5"><span class="ms-4 text-primary">Switch</span></div>
             </div>
@@ -114,7 +119,7 @@ $resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
               
                 <img class=" rounded-circle border" src="IMG_4128.jpg" width="50" height="50"/>
                 <div class="">
-                    <h6 class="ms-2"><?php echo $username['username'];  ?></h6>
+                    <h6 class="ms-2"><a class="text-decoration-none text-dark" href="profile.php?id=<?php echo $username['user_id']; ?>"> <?php echo $username['username'];  ?></h6>
                     <span class="ms-2 little "><?php echo $username['mobile_number'];  ?></span>
                 </div>
                 <div  class="ms-5"><span class="ms-5 text-primary">Follow</span></div>
