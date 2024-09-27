@@ -2,9 +2,9 @@
 session_start();
 ?>
 <?php
-// // if(isset($_SESSION['username']) && $_SESSION['username']!=''){
-// //     header("location:home.php");
-// }
+ if(isset($_SESSION['username']) && $_SESSION['username']!=''){
+     header("location:home.php");
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,12 +37,16 @@ session_start();
                                     $user=$_POST['username'];
                                     $pass=$_POST['password'];
                             
-                                $query="SELECT * FROM users WHERE username='$user' AND password='$pass'";
+                                $query="SELECT * FROM user1 WHERE username='$user' AND password='$pass'";
                                 $result=mysqli_query($conn,$query);
                                 $resultarr=mysqli_fetch_assoc($result);
                                 if($resultarr!=null && count($resultarr)>0){
                                     echo 'data found';
                                     $_SESSION['username']=$user;
+                                    $_SESSION['user_id']=$resultarr['user_id'];
+                                    $_SESSION['bio']=$resultarr['bio'];
+                                    $_SESSION['image']=$resultarr['image'];
+                                    $_SESSION['full_name']=$resultarr['full_name'];
                                     header("location:home.php");
                                 }else{
                                     echo '<p class="text-danger text-center mt-1">Username/password Invalid!!</p>';
@@ -70,9 +74,7 @@ session_start();
                     </div>  
                 </div>
                 </div>
-                
             </div>
-           
         </div>
     </div>
 </body>

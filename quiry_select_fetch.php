@@ -31,6 +31,7 @@ $resultarr=mysqli_fetch_all ($result,MYSQLI_ASSOC);
 
 </head>
 <body>
+    
     <div class="container">
         <table class="table table-bordered">
             <tr>

@@ -20,7 +20,7 @@
             // echo "$name </br>";
             // echo "$user </br>";
             // echo $pass;
-            $query="INSERT INTO users (mobile_number,full_name,username,password) VALUES ('$num','$name','$user','$pass')";
+            $query="INSERT INTO user1 (mobile_number,full_name,username,password) VALUES ('$num','$name','$user','$pass')";
             $result=mysqli_query($conn,$query);
             echo "data Tis tranferred successfully";
         }

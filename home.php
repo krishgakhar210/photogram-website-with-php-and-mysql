@@ -1,17 +1,24 @@
 <?php
 include('db.php');
 session_start();
-// if(!isset($_SESSION['username'])){
-//     header("location:login.php");
-// }
+if(!isset($_SESSION['username'])){
+    header("location:login.php");
+}
 $currentUsername=$_SESSION['username'];
-$query="SELECT * FROM users WHERE username!='$currentUsername'";
+$query="SELECT * FROM user1 WHERE username!='$currentUsername'";
 $result=mysqli_query($conn,$query);
 $resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
+// print_r($resultarr);
+
+// $currentUsername=$_SESSION['username'];
+// $query="SELECT FROM users WHERE username!='$currentUsername'";
+// $result=mysqli_query($conn,$query);
+// $resultarr=mysqli_fetch_all($result,MYSQLI_ASSOC);
+
 
 // Fetch current user data
 
-$query1="SELECT * FROM users WHERE username =   '$currentUsername'";
+$query1="SELECT * FROM user1 WHERE username =   '$currentUsername'";
 $result1=mysqli_query($conn,$query1);
 $resultarr1=mysqli_fetch_assoc($result1);
 ?>
@@ -26,7 +33,22 @@ $resultarr1=mysqli_fetch_assoc($result1);
     <link href="home.css" rel="stylesheet" />
 </head> 
 <body class="body">
-    <div class="d-flex">
+    <nav class="navbar  navbar-expand-lg navbar bg-dark border-bottom border-body"  data-bs-theme="dark" >
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse offset-10">
+            <span class="navbar-toggler-icon"></span>
+            <ul class="navbar-nav"> 
+                <li class="nav-item">
+                <a class="nav-link" href="#">My creations</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="create.php">Create</a>
+                </li>  
+            </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex ">
         <div class=" mt-4 ms-4 border-end position-fixed" style="width:15rem; height:45rem;">
             <i class="fs-4   ">photogram </i>
             <div class="d-flex mt-5">
